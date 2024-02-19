@@ -1,0 +1,32 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Home {% endblock %}
+
+{% block css %}
+    <link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+<div>
+    {% block content %}
+    <div class="container-fluid">
+        <h1 class="h3 mb-2 text-gray-800">Main</h1>
+             <div class="card shadow mb-4">
+                 <div class="card-header py-3">
+<!--                     <form action="post">-->
+                        Welcome! <br>Your reference number: <input name="refno" style="border: none; background:none; outline: none" value="{{ request.session.login_info.refno }}" readonly>
+                        <br>Check application status <a class="" href="/check_application/{{ request.session.login_info.refno }}/"> here</a>.
+<!--                     </form>-->
+                 </div>
+             </div>
+    </div>t
+    {% endblock %}
+</div>
+{% block js %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %} "></script>
+    <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'js/demo/datatables-demo.js' %}"></script>
+{% endblock %}
+

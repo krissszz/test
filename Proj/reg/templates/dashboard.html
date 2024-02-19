@@ -1,0 +1,346 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} My Info {% endblock %}
+
+{% block css %}
+    <link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+<div>
+    {% block content %}
+        <div class="container-fluid">
+<!--      Applicant      -->
+            <h1 class="h3 mb-2 text-gray-800">Application Information</h1>
+                    <p class="mb-4">Reference No: {{ user.refno }}  │ Status: {{ user.status }} </p>
+
+            <form>
+                {% csrf_token %}
+
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <div class="align-content-center">
+                                <h3 class="m-0 font-weight-bold text-primary" >
+                                Personal Information
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Student ID</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.studentId }}" readonly>
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Type of Student</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.studentStatus }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">First Name</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" value="{{ user.firstname }}" class='form-control form-control-user' readonly/>
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Middle Name</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.firstname }}" readonly>
+                                    </div>
+                                </div>
+                                 <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Last Name</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.lastname }}" readonly>
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Suffix</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.suffix }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Gender</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.gender }}" readonly>
+                                    </div>
+                                    <label class="col-sm-2 col-form-label"  style="margin-left: 3rem">Date of Birth</label>
+                                    <div class="col-sm-3">
+                                        <input type="date" class="form-control form-control-user" value="{{ user.birthofdate }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Place of Birth</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.birthofplace }}" readonly>
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Religion</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.religion }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Citizenship</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.citizenship }}" readonly>
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Contact Number</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.contactno }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Date of Registration</label>
+                                    <div class="col-sm-3">
+                                        <input type="date" class="form-control form-control-user" value="{{ user.DateRegistered }}" readonly>
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Present Address</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.presentAddress }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Home Address</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.homeAddress }}" readonly>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+<!--      Parents Info      -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <div class="align-content-center">
+                                <h3 class="m-0 font-weight-bold text-primary" >
+                                Parents Information
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="card-body" >
+
+                                <h5 class="text-primary">Mother Information</h5>
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">First Name</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.motherFirstname }}" readonly>
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Middle Name</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.motherMiddlename }}" readonly>
+                                    </div>
+                                </div>
+                                 <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Last Name</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.motherLastname }}" readonly>
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Occupation</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.motherOccupation }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Contact Number</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.motherContact }}" readonly>
+                                    </div>
+                                </div>
+
+
+                                <h5 class="text-primary">Father Information</h5>
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">First Name</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.fatherFirstname }}" readonly>
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Middle Name</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.fatherMiddlename }}" readonly>
+                                    </div>
+                                </div>
+                                 <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Last Name</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.fatherLastname }}" readonly>
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Occupation</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.fatherOccupation }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Contact Number</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.fatherContactno }}" readonly>
+                                    </div>
+                                </div>
+
+                        </div>
+                    </div>
+<!--      Guardian      -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <div class="align-content-center">
+                                <h3 class="m-0 font-weight-bold text-primary" >
+                                Guardian Information
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="card-body" >
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Name</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.GuardianName }}" readonly>
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Occupation</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.GuardianOccupation }}" readonly>
+                                    </div>
+                                </div>
+                                 <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Address</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.GuardianAddress }}" readonly>
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Contact Number</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.GuardianContactno }}" readonly>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+<!--      Spouse      -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <div class="align-content-center">
+                                <h3 class="m-0 font-weight-bold text-primary" >
+                                    Spouse Information <h5>(If Applicable)</h5>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="card-body" >
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Name</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.SpouseName }}" readonly>
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Occupation</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.SpouseOccupation }}" readonly>
+                                    </div>
+                                </div>
+                                 <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Address</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.SpouseAddress }}" readonly>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+<!--      Previous School      -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <div class="align-content-center">
+                                <h3 class="m-0 font-weight-bold text-primary" >
+                                    Previous School <h5>(Input School Name)</h5>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="card-body" >
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Junior High School</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.JHSLastAttended }}" readonly>
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">School Year</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.JHSdateLastAttended }}" readonly>
+                                    </div>
+                                </div>
+                                 <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Senior High School</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.SHSLastAttended }}" readonly>
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">School Year</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.SHSDateLastAttended }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">College</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.CollegiateLastAttended }}" readonly>
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">School Year</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.CollegiateDateLastAttended }}" readonly>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+<!--      Requirements      -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <div class="align-content-center">
+                                <h3 class="m-0 font-weight-bold text-primary" >
+                                    Requirements
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="card-body" >
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Clearance</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.Clearance }}" readonly>
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Sid</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.Sid }}" readonly>
+                                    </div>
+                                </div>
+                                 <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">PSA</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.psa }}" readonly>
+                                    </div>
+                                     <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Form148</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.Form148 }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-group row" >
+                                        <label class="col-sm-2 col-form-label">Form137</label>
+                                        <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.Form137 }}" readonly>
+                                    </div>
+                                         <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Good Moral</label>
+                                        <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.GoodMoral }}" readonly>
+                                    </div>
+                                    </div>
+                                    <div class="form-group row" >
+                                        <label class="col-sm-2 col-form-label">Credential</label>
+                                        <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.Credential }}" readonly>
+                                    </div>
+                                        <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Picture</label>
+                                        <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.Picture }}" readonly>
+                                    </div>
+                                    </div>
+                                    <div class="form-group row" >
+                                        <label class="col-sm-2 col-form-label">Envelop</label>
+                                        <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" value="{{ user.Envelop }}" readonly>
+                                    </div>
+                                    </div>
+                        </div>
+                    </div>
+                 </form>
+        </div>
+    <!-- /.container-fluid -->
+    {% endblock %}
+</div>
+
+{% block js %}
+    <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'js/demo/datatables-demo.js' %}"></script>
+{% endblock %}

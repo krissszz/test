@@ -1,0 +1,386 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Application {% endblock %}
+
+{% block css %}
+    <link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+<div>
+    {% block content %}
+        <div class="container-fluid">
+<!--      Applicant      -->
+            <form method="post" action="/registration/">
+                {% csrf_token %}
+                   <h5>Reference No.<input type="text" name="refno" style="margin-left: 0; border: none; outline: none; background: none" value="{{ refno }}" readonly></h5>
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <div class="align-content-center">
+                                <h3 class="m-0 font-weight-bold text-primary" >
+                                Personal Information
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="card-body" >
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Student ID</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" name="studentId" placeholder="(if applicable)">
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Type of Student</label>
+                                    <div class="col-sm-3">
+                                        <select name="studentStatus" id="studentStatus" class="form-control form-control-user">
+                                          <option value=""></option>
+                                          <option value="Old">Old</option>
+                                          <option value="New">New</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">First Name</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" name="firstname">
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Middle Name</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" name="middlename">
+                                    </div>
+                                </div>
+                                 <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Last Name</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" name="lastname">
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Suffix</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" name="suffix">
+                                    </div>
+                                </div>
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Gender</label>
+                                    <div class="col-sm-3">
+                                        <select name="gender" id="gender" class="form-control form-control-user">
+                                          <option value=""></option>
+                                          <option value="Male">Male</option>
+                                          <option value="Female">Female</option>
+                                        </select>
+                                    </div>
+                                    <label class="col-sm-2 col-form-label"  style="margin-left: 3rem">Date of Birth</label>
+                                    <div class="col-sm-3">
+                                        <input type="date" class="form-control form-control-user" name="birthofdate">
+                                    </div>
+                                </div>
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Place of Birth</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" name="birthofplace">
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Religion</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" name="religion">
+                                    </div>
+                                </div>
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Citizenship</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" name="citizenship">
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Contact Number</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" name="contactno">
+                                    </div>
+                                </div>
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Date of Registration</label>
+                                    <div class="col-sm-3">
+                                        <input type="date" class="form-control form-control-user" name="DateRegistered">
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Present Address</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" name="presentAddress">
+                                    </div>
+                                </div>
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Home Address</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" name="homeAddress">
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+<!--      Parents Info      -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <div class="align-content-center">
+                                <h3 class="m-0 font-weight-bold text-primary" >
+                                Parents Information
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="card-body" >
+                                <h5 class="text-primary">Mother Information</h5>
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">First Name</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" name="motherFirstname">
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Middle Name</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" name="motherMiddlename">
+                                    </div>
+                                </div>
+                                 <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Last Name</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" name="motherLastname">
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Occupation</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" name="motherOccupation">
+                                    </div>
+                                </div>
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Contact Number</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" name="motherContact">
+                                    </div>
+                                </div>
+                                <h5 class="text-primary">Father Information</h5>
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">First Name</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" name="fatherFirstname">
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Middle Name</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" name="fatherMiddlename">
+                                    </div>
+                                </div>
+                                 <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Last Name</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" name="fatherLastname">
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Occupation</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" name="fatherOccupation">
+                                    </div>
+                                </div>
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Contact Number</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" name="fatherContactno">
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+<!--      Guardian      -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <div class="align-content-center">
+                                <h3 class="m-0 font-weight-bold text-primary" >
+                                Guardian Information
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="card-body" >
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Name</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" name="GuardianName">
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Occupation</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" name="GuardianOccupation">
+                                    </div>
+                                </div>
+                                 <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Address</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" name="GuardianAddress">
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Contact Number</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" name="GuardianContactno">
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+<!--      Spouse      -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <div class="align-content-center">
+                                <h3 class="m-0 font-weight-bold text-primary" >
+                                    Spouse Information <h6>(If Applicable)</h6>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="card-body" >
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Name</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" name="SpouseName">
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Occupation</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" name="SpouseOccupation">
+                                    </div>
+                                </div>
+                                 <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Address</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" name="SpouseAddress">
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+<!--      Previous School      -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <div class="align-content-center">
+                                <h3 class="m-0 font-weight-bold text-primary" >
+                                    Previous School <h6>(Input School Name)</h6>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="card-body" >
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Junior High School</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" name="JHSLastAttended">
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">School Year</label>
+                                    <div class="col-sm-3">
+                                        <input type="date" class="form-control form-control-user" name="JHSdateLastAttended">
+                                    </div>
+                                </div>
+                                 <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Senior High School</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" name="SHSLastAttended">
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">School Year</label>
+                                    <div class="col-sm-3">
+                                        <input type="date" class="form-control form-control-user" name="SHSDateLastAttended">
+                                    </div>
+                                </div>
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">College</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control form-control-user" name="CollegiateLastAttended">
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">School Year</label>
+                                    <div class="col-sm-3">
+                                        <input type="date" class="form-control form-control-user" name="CollegiateDateLastAttended">
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+<!--      Requirements      -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <div class="align-content-center">
+                                <h3 class="m-0 font-weight-bold text-primary" >
+                                    Requirements
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="card-body" >
+                                <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">Clearance</label>
+                                    <div class="col-sm-3">
+                                        <select name="Clearance" id="Clearance" class="form-control form-control-user">
+                                          <option value=""></option>
+                                          <option value="Yes">Yes</option>
+                                          <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                    <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Sid</label>
+                                    <div class="col-sm-3">
+                                        <select name="Sid" id="Sid" class="form-control form-control-user">
+                                          <option value=""></option>
+                                          <option value="Yes">Yes</option>
+                                          <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                 <div class="form-group row" >
+                                    <label class="col-sm-2 col-form-label">PSA</label>
+                                    <div class="col-sm-3">
+                                        <select name="psa" id="psa" class="form-control form-control-user">
+                                          <option value=""></option>
+                                          <option value="Yes">Yes</option>
+                                          <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                     <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Form148</label>
+                                    <div class="col-sm-3">
+                                        <select name="Form148" id="Form148" class="form-control form-control-user">
+                                          <option value=""></option>
+                                          <option value="Yes">Yes</option>
+                                          <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row" >
+                                        <label class="col-sm-2 col-form-label">Form137</label>
+                                        <div class="col-sm-3">
+                                            <select name="Form137" id="Form137" class="form-control form-control-user">
+                                              <option value=""></option>
+                                              <option value="Yes">Yes</option>
+                                              <option value="No">No</option>
+                                            </select>
+                                        </div>
+                                         <label class="col-sm-2 col-form-label" style="margin-left: 3rem">GoodMoral</label>
+                                        <div class="col-sm-3">
+                                            <select name="GoodMoral" id="GoodMoral" class="form-control form-control-user">
+                                              <option value=""></option>
+                                              <option value="Yes">Yes</option>
+                                              <option value="No">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" >
+                                        <label class="col-sm-2 col-form-label">Credential</label>
+                                        <div class="col-sm-3">
+                                            <select name="Credential" id="Credential" class="form-control form-control-user">
+                                              <option value=""></option>
+                                              <option value="Yes">Yes</option>
+                                              <option value="No">No</option>
+                                            </select>
+                                        </div>
+                                        <label class="col-sm-2 col-form-label" style="margin-left: 3rem">Picture</label>
+                                        <div class="col-sm-3">
+                                            <select name="Picture" id="Picture" class="form-control form-control-user">
+                                              <option value=""></option>
+                                              <option value="Yes">Yes</option>
+                                              <option value="No">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" >
+                                        <label class="col-sm-2 col-form-label">Envelope</label>
+                                        <div class="col-sm-3">
+                                            <select name="Envelop" id="Envelop" class="form-control form-control-user">
+                                              <option value=""></option>
+                                              <option value="Yes">Yes</option>
+                                              <option value="No">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-user">
+                    Submit
+                    </button>
+            </form>
+        </div>
+    <!-- /.container-fluid -->
+    {% endblock %}
+</div>
+
+{% block js %}
+    <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'js/demo/datatables-demo.js' %}"></script>
+{% endblock %}
